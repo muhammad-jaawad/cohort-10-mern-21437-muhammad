@@ -1,5 +1,5 @@
-const pino = require('pino');
-const env = require('./env');
+import pino from 'pino';
+import env from './env';
 
 const logger = pino({
   level: env.logLevel,
@@ -7,15 +7,16 @@ const logger = pino({
     paths: [
       'req.headers.authorization',
       'req.headers.cookie',
-      'password',
-      'token',
       'req.body.password',
       'req.body.token',
+      'password',
+      'token',
       '*.password',
       '*.token',
+      'err.body',
     ],
     censor: '[REDACTED]',
   },
 });
 
-module.exports = logger;
+export default logger;

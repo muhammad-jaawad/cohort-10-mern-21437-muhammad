@@ -1,6 +1,8 @@
 {
-  "require": "tests/setup.js",
-  "spec": "tests/**/*.test.js",
+  "node-option": ["import=tsx"],
+  "require": ["tests/setup.ts"],
+  "extension": ["ts"],
+  "spec": "tests/**/*.test.ts",
   "timeout": 10000,
   "exit": true
 }

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getHealthStatus } from '../services/api';
 
-/** @typedef {'checking' | 'online' | 'degraded' | 'offline'} HealthStatus */
+export type HealthStatus = 'checking' | 'online' | 'degraded' | 'offline';
 
-/** @returns {HealthStatus} */
-export function useHealthStatus() {
-  const [status, setStatus] = useState(/** @type {HealthStatus} */ ('checking'));
+export function useHealthStatus(): HealthStatus {
+  const [status, setStatus] = useState<HealthStatus>('checking');
 
   useEffect(() => {
     let isMounted = true;

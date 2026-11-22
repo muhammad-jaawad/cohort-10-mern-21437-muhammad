@@ -1,73 +1,47 @@
-# Notes App — MERN Cohort 10 Assignment
+# cohort-10-mern-21437-muhammad
+Cohort 10 — MERN (NodeJS+ReactJS) assignment for Muhammad Jawad
 
-A full-stack notes application built with the MERN-style stack (Node/Express backend, React frontend, SQL database). This repo is being built incrementally across feature branches, starting with Auth, a Notes Dashboard, a Rich Text Note Editor, and an optional Profile screen.
+## DraftlyNote
 
-## Project Structure
+A full-stack notes application built with the MERN-style stack.
+
+### Tech Stack
+
+- **Backend:** Node.js, Express
+- **Frontend:** React
+- **Database:** MySQL (added in a later PR)
+- **Logging:** Pino
+- **Testing:** Mocha/Chai + Supertest (backend), Jest (frontend)
+- **Code quality:** SonarQube (added in a later PR)
+
+### Project Structure
 
 ```
 .
-├── backend/              # Node.js + Express API
-│   ├── src/
-│   │   ├── config/       # env, logger, database connection
-│   │   ├── routes/       # route definitions
-│   │   ├── controllers/  # request handlers
-│   │   ├── services/     # business logic
-│   │   ├── models/       # data access layer
-│   │   ├── middleware/   # error handling, logging, etc.
-│   │   ├── utils/        # shared helpers (e.g. AppError)
-│   │   ├── app.js        # Express app setup
-│   │   └── server.js     # server entry point
-│   └── tests/            # Mocha/Chai test suite
-│
-└── frontend/             # React (Vite) client
-    └── src/
-        ├── components/   # reusable UI components
-        ├── pages/        # top-level screens/routes
-        ├── services/     # API client calls
-        ├── hooks/        # custom React hooks
-        └── utils/        # shared helpers/constants
+├── backend/   # Node.js + Express API
+└── frontend/  # React client
 ```
 
-## Git Branching Strategy
+### Git Branching Strategy
 
-- **`main`** — production-ready code only. Protected; merged into via PR from `develop`.
-- **`develop`** — integration branch where completed features land before a release to `main`.
-- **`feature/<frontend|backend>/<name>`** — new functionality, branched from `develop` (e.g. `feature/backend/auth-routes`, `feature/frontend/notes-dashboard`).
-- **`bugfix/<frontend|backend>/<name>`** — bug fixes, branched from `develop` (e.g. `bugfix/backend/health-check-crash`).
+- `main` — production-ready code only, merged into via PR from `develop`.
+- `develop` — integration branch where completed features land before a release to `main`.
+- `feature/<frontend|backend>/<name>` — new functionality, branched from `develop`.
+- `bugfix/<frontend|backend>/<name>` — bug fixes, branched from `develop`.
 
-Workflow: branch off `develop` → open a PR back into `develop` → periodically merge `develop` into `main` for releases.
+All work branches off `develop` and opens a PR back into `develop`.
 
-## Local Setup
-
-### Backend
+### Backend Setup
 
 ```bash
 cd backend
-cp .env.example .env    # fill in DB credentials, etc.
+cp .env.example .env
 npm install
-npm run dev              # starts the API with nodemon on PORT (default 5000)
+npm run dev     # starts the API with nodemon on PORT (default 5000)
+npm test        # runs the Mocha/Chai test suite
+npm run lint     # runs ESLint
 ```
-
-Useful scripts: `npm start` (production start), `npm test` (Mocha/Chai), `npm run lint` (ESLint), `npm run typecheck` (TypeScript checking JSDoc-annotated `.js` files, no emit).
 
 Health check: `GET http://localhost:5000/api/health`
 
-### Frontend
-
-```bash
-cd frontend
-cp .env.example .env     # set VITE_API_BASE_URL if different from default
-npm install
-npm run dev               # starts Vite dev server on http://localhost:3000
-```
-
-Useful scripts: `npm run build` (production build), `npm test` (Jest), `npm run lint` (ESLint), `npm run typecheck` (TypeScript checking JSDoc-annotated `.js`/`.jsx` files, no emit).
-
-### Requirements
-
-- Node.js 18+
-- A PostgreSQL instance for the backend, configured via `backend/.env` (`DB_CLIENT=postgres`). `DB_CLIENT` is reserved for future MySQL support but is not implemented yet — any other value fails fast at startup.
-
-## Type Safety
-
-The project stays in plain JavaScript (matching the original setup) rather than converting to `.ts`/`.tsx`. Both `backend` and `frontend` instead use TypeScript in "check JS" mode (`allowJs` + `checkJs`, `tsc --noEmit` via `npm run typecheck`) against JSDoc type annotations on key modules (config, middleware, controllers, hooks, services). This satisfies real type checking without touching `start`/`dev`/`test`/`build`. A full `.ts` conversion is still possible later if the team wants stricter guarantees — see the summary note for this change for the trade-offs.
+The frontend and the MySQL database are introduced in later PRs.

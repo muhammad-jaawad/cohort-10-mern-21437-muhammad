@@ -1,4 +1,3 @@
-import React from 'react';
 import { useHealthStatus } from '../hooks/useHealthStatus';
 
 function HomePage() {

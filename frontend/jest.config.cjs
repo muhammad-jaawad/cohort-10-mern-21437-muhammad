@@ -4,5 +4,6 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|scss)$': 'identity-obj-proxy',
   },
-  testMatch: ['**/*.test.{js,jsx}'],
+  testMatch: ['**/*.test.{js,jsx,ts,tsx}'],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
 };

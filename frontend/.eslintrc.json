@@ -17,5 +17,18 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": ["warn", { "args": "none" }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["warn", { "args": "none" }]
+      }
+    }
+  ]
 }
