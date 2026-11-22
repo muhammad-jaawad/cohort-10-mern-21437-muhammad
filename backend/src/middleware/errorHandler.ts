@@ -18,18 +18,22 @@ export function notFoundHandler(req: Request, res: Response, next: NextFunction)
 /**
  * Body-parser errors carry the raw request body (`err.body`) and their message
  * can echo a snippet of it. Neither may reach the logs or the client.
+ * Only whitelisted fields are logged, so `body` is never serialized.
  */
 function isParserError(err: HttpError): boolean {
   return typeof err.type === 'string' && err.type.startsWith('entity.');
 }
 
 function sanitizeError(err: HttpError): { logError: Record<string, unknown>; message: string } {
-  if (!isParserError(err)) {
-    return { logError: err as unknown as Record<string, unknown>, message: err.message };
+  if (isParserError(err)) {
+    return {
+      logError: { type: err.type, name: err.name, message: PARSE_FAILED_MESSAGE },
+      message: PARSE_FAILED_MESSAGE,
+    };
   }
   return {
-    logError: { type: err.type, name: err.name, message: PARSE_FAILED_MESSAGE },
-    message: PARSE_FAILED_MESSAGE,
+    logError: { type: err.type, name: err.name, message: err.message, stack: err.stack },
+    message: err.message,
   };
 }
 

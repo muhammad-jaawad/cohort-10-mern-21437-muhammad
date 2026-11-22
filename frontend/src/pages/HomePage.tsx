@@ -5,7 +5,7 @@ function HomePage() {
 
   return (
     <main className="home-page">
-      <p>API status: {apiStatus}</p>
+      <p role="status" aria-live="polite">API status: {apiStatus}</p>
       <p>Notes dashboard, editor, and auth screens will live here.</p>
     </main>
   );

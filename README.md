@@ -3,10 +3,11 @@ Cohort 10 — MERN (NodeJS+ReactJS) assignment for Muhammad Jawad
 
 ## DraftlyNote
 
-A full-stack notes application built with the MERN-style stack.
+A full-stack notes application built with the MERN-style stack, written in TypeScript.
 
 ### Tech Stack
 
+- **Language:** TypeScript (strict mode in the backend)
 - **Backend:** Node.js, Express
 - **Frontend:** React
 - **Database:** MySQL (added in a later PR)
@@ -18,8 +19,9 @@ A full-stack notes application built with the MERN-style stack.
 
 ```
 .
-├── backend/   # Node.js + Express API
-└── frontend/  # React client
+├── backend/   # Node.js + Express API (TypeScript)
+├── frontend/  # React client (TypeScript)
+└── shared/    # TypeScript types shared by backend and frontend
 ```
 
 ### Git Branching Strategy
@@ -37,9 +39,12 @@ All work branches off `develop` and opens a PR back into `develop`.
 cd backend
 cp .env.example .env
 npm install
-npm run dev     # starts the API with nodemon on PORT (default 5000)
-npm test        # runs the Mocha/Chai test suite
-npm run lint     # runs ESLint
+npm run dev       # starts the API with nodemon + tsx on PORT (default 5000)
+npm run build     # compiles TypeScript to dist/
+npm start         # runs the compiled server (dist/server.js)
+npm run typecheck # type-checks with tsc, no emit
+npm test          # runs the Mocha/Chai test suite
+npm run lint      # runs ESLint
 ```
 
 Health check: `GET http://localhost:5000/api/health`

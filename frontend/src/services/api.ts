@@ -15,6 +15,6 @@ export async function apiGet<T>(path: string): Promise<T> {
   }
 }
 
-export async function getHealthStatus(): Promise<HealthResponse> {
+export function getHealthStatus(): Promise<HealthResponse> {
   return apiGet<HealthResponse>('/health');
 }

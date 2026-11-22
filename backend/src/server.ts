@@ -3,7 +3,9 @@ import env from './config/env';
 import logger from './config/logger';
 
 const server = app.listen(env.port, () => {
-  logger.info(`Server listening on port ${env.port} (${env.nodeEnv})`);
+  const address = server.address();
+  const port = typeof address === 'object' && address ? address.port : env.port;
+  logger.info(`Server listening on port ${port} (${env.nodeEnv})`);
 });
 
 // server.close() won't invoke its callback while connections stay open,

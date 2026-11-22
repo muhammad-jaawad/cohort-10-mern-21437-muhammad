@@ -12,7 +12,7 @@ export function useHealthStatus(): HealthStatus {
     getHealthStatus()
       .then((data) => {
         if (!isMounted) return;
-        setStatus(data?.db === 'connected' ? 'online' : 'degraded');
+        setStatus(data?.success && data.status === 'ok' ? 'online' : 'degraded');
       })
       .catch(() => {
         if (isMounted) setStatus('offline');

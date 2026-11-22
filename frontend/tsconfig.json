@@ -12,6 +12,6 @@
     "strict": false,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+  "include": ["babel.config.cjs", "jest.config.cjs", "src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "dist", "**/*.test.js", "**/*.test.jsx", "**/*.test.ts", "**/*.test.tsx"]
 }
